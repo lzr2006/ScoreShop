@@ -1,33 +1,149 @@
 <!doctype html>
 <html>
 <head>
+	<script src="js/vue.min.js"></script>
+
 <meta charset="utf-8">
 <title>无标题文档</title>
 <style type="text/css">
 	h1{
-		color:violet;
+		color:blueviolet;
 		font-family: "华文隶书";
 	}
 	h1:hover{
-		color: springgreen;
+		color: blue;
 		text-shadow: 2px 1px 3px skyblue;
-		border: double red;
-		background: #B706BC;
+		opacity: 0.8;
+		background: wheat;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+		border-bottom-left-radius: 20px;
 	}
 	html,body{
 		background-image: url("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2839047742,1068385099&fm=26&gp=0.jpg");
 		background-repeat: no-repeat;
 		background-size:cover;
 	}
+
+	#tips{
+		opacity:0.9;
+		height: 40px;
+		background-color: aliceblue;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+		border-bottom-left-radius: 20px;
+	}
 </style>
 <script>
+	
+
+var timer;
+
+var toppadding=-50;
+
 function hello(){
-	alert("欢迎来到积分商城。")
-}	
+	//alert("欢迎来到积分商城。")
+	var alpha=1;
+	var tips=document.getElementById("tips");
+	tips.innerHTML="<center  style='float:top;padding-top: 9px;'>欢迎来到积分商城。</center>";
+
+	clearInterval(timer);
+
+timer=setInterval(
+
+function(){
+
+	  alpha-=0.1;
+
+	  tips.style.opacity=alpha;
+
+	  if(alpha>=1||alpha<=0){
+
+	  clearInterval(timer);
+
+	 }
+
+},89);
+
+
+
+var timer2=setInterval(
+
+function(){
+
+	toppadding+=1;
+
+//	console.log(toppadding)
+	 var top_title= document.getElementById("top_title");
+	 top_title.style.marginTop=toppadding+"px";
+
+	  if(toppadding>=1){
+
+	  clearInterval(timer2);
+
+	 }
+
+},10);
+	
+
+
+
+
+
+
+}
+
+
+
+
+
 </script>
 </head>
 
 <body onload = "hello()">
-<center><h1>欢迎来到积分商城-Toy's World Softmgr</h1></center>
+	<div id="tips"></div>
+	<div id="top_title">
+<center><h1 >{{welcome}}</h1></center></div>
+<center>
+<table id="item" width="80%" border="0">
+  <tbody>
+    <tr>
+      <td width="4">1</td>
+      <td width="4">2</td>
+      <td width="4">3</td>
+      <td width="4">4</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</center>
 </body>
+
+
+<script>
+
+
+	
+	var vm = new Vue({
+				el: '#top_title',
+				data: {
+					welcome: "欢迎来到积分商城-Toy's World Softmgr"
+					
+				
+				},
+				methods: {
+					details: function() {
+						return  this.site + " - 学的不仅是技术，更是梦想！";
+					}
+				}
+			})
+	
+	</script>
 </html>
